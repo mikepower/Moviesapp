@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Moviesapp</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="banner">
+	<%= image_tag("movies.jpg", :size => "200x100") %>
+	<%= @page_title || "Welcome to DT354-3 Movies" %>
+</div>
+
+<div id="nav">
+    <ul>
+	  <% if !signed_in? %>
+		<li><%= link_to "Sign In", signin_path %></li>		
+	  <% else %>
+		<li>Signed in as <%= @current_user.name %></li>
+		<li><%= link_to "Sign Out", signout_path %></li>
+	  <%end %>
+
+      <li><%= link_to "About", about_path%></li>
+      <li><%= link_to "Movie News", 'http://oscar.go.com/nominees' %></li>
+      <li><%= mail_to "mary.regan@dit.ie", "Contact us" %></li>	
+      <li><%= link_to "Movies", movies_path%></li>
+	  <li><%= link_to "Genres", genres_path%></li>
+	  <li><%= link_to "Users", users_path%></li>
+	  
+    </ul>
+</div>
+
+<%= yield %>
+<p id = "notice"><%= notice %></p>
+<h3>This is the website for DT354-3</h3>
+
+
+</body>
+</html>
